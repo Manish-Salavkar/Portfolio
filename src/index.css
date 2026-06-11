@@ -827,6 +827,54 @@ body {
   font-weight: 500;
 }
 
+.email-card {
+  position: relative;
+
+  cursor: pointer;
+
+  overflow: hidden;
+}
+
+.email-reveal {
+  margin-top: 0.75rem;
+
+  max-height: 0;
+
+  opacity: 0;
+
+  transition:
+    max-height 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.email-card:hover .email-reveal {
+  max-height: 60px;
+
+  opacity: 1;
+}
+
+.email-text {
+  display: block;
+
+  color: #e6edf3;
+
+  margin-bottom: 0.25rem;
+
+  font-size: 0.8rem;
+
+  word-break: break-all;
+}
+
+.copy-hint {
+  display: block;
+
+  color: #58a6ff;
+
+  font-size: 0.75rem;
+
+  text-align: center;
+}
+
 .footer {
   padding: 4rem 2rem;
 

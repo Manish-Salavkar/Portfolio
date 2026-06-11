@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Home, Menu, X } from "lucide-react";
 import { Link } from "react-scroll";
 import { siteConfig } from "../data/siteConfig";
+import logo from "../assets/initial_logo.svg";
 
 const links = [
   { name: "About", to: "about" },
@@ -20,7 +21,7 @@ export default function Navbar() {
       <div className="navbar-container">
         <Link to="home" smooth={true} duration={500}>
           <img
-            src="/initial_logo.svg"
+            src={logo}
             width={40}
             height={40}
             alt="logo"

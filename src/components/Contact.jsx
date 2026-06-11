@@ -1,9 +1,28 @@
+import { useState } from "react";
 import { Mail, FileText } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { siteConfig } from "../data/siteConfig";
 
 export default function Contact() {
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(
+        siteConfig.email
+      );
+
+      setCopied(true);
+
+      setTimeout(() => {
+        setCopied(false);
+      }, 2000);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <section id="contact" className="contact">
       <div className="container">
@@ -28,13 +47,27 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <a
-            href={siteConfig.email}
-            className="contact-item"
+
+          <div
+            className="contact-item email-card"
+            onClick={copyEmail}
           >
             <Mail size={22} />
+
             <span>Email</span>
-          </a>
+
+            <div className="email-reveal">
+              <small className="email-text">
+                {siteConfig.email}
+              </small>
+
+              <small className="copy-hint">
+                {copied
+                  ? "✓ Copied!"
+                  : "Click to copy"}
+              </small>
+            </div>
+          </div>
 
           <a
             href={siteConfig.linkedin}
@@ -59,10 +92,13 @@ export default function Contact() {
           <a
             href={siteConfig.resume}
             className="contact-item"
+            target="_blank"
+            rel="noreferrer"
           >
             <FileText size={22} />
             <span>Resume</span>
           </a>
+
         </motion.div>
 
       </div>
